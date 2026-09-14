@@ -1,0 +1,4 @@
+interface:
+  display_name: "Practice Scenario Builder"
+  short_description: "Practice concepts through realistic scenarios."
+  default_prompt: "Use $practice-scenario-builder to create an intermediate DLQ design challenge."

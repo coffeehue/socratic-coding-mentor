@@ -1,0 +1,4 @@
+interface:
+  display_name: "Socratic Teacher"
+  short_description: "Learn through focused questions."
+  default_prompt: "Use $socratic-teacher to coach me through this problem one question at a time."

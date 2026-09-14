@@ -1,0 +1,4 @@
+interface:
+  display_name: "Hypothesis Debugger"
+  short_description: "Debug by testing one hypothesis at a time."
+  default_prompt: "Use $hypothesis-debugger to help me diagnose this error without giving the fix."

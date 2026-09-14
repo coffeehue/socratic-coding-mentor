@@ -1,0 +1,4 @@
+interface:
+  display_name: "DSA Foundations"
+  short_description: "Learn prerequisites before solving DSA."
+  default_prompt: "Use $dsa-foundations to map the prerequisites for this DSA problem without solving it."

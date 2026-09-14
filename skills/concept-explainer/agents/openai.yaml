@@ -1,0 +1,4 @@
+interface:
+  display_name: "Concept Explainer"
+  short_description: "Understand a concept from first principles."
+  default_prompt: "Use $concept-explainer to explain this programming concept with an example and code."

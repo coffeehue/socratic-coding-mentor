@@ -1,0 +1,4 @@
+interface:
+  display_name: "Progressive Hints"
+  short_description: "Get one clue without spoilers."
+  default_prompt: "Use $progressive-hints to guide my next step without revealing the solution."
