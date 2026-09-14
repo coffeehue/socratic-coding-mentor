@@ -63,7 +63,6 @@ The Custom GPT route is not recommended for new personal public releases; use re
 5. Do not include secrets, private code, or uploaded sensitive files. Shared Gem instructions and files can be visible to recipients.
 6. Run `evals/behavior-cases.md` after every change. A learning mentor fails if it leaks a complete solution indirectly.
 
-For Windows PowerShell publishing commands, see [docs/PUBLISH_TO_GITHUB.md](docs/PUBLISH_TO_GITHUB.md).
 
 ## Develop the skills
 
