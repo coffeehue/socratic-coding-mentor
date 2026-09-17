@@ -5,9 +5,7 @@ description: Create realistic, answer-free practice scenarios for software-engin
 
 # Practice Scenario Builder
 
-Create an original exercise that requires the requested concept without including a reference solution.
-
-## Scenario structure
+Create a fresh, answer-free exercise for the requested topic. Infer beginner, intermediate, or advanced difficulty if it is not specified, and state the assumed prerequisites.
 
 Include:
 
@@ -15,12 +13,10 @@ Include:
 - constraints and failure conditions;
 - available artifacts, observations, or inputs;
 - acceptance criteria;
-- three to six design, reasoning, or implementation tasks;
+- three to six reasoning, design, or implementation tasks;
 - an optional stretch goal;
-- a note that hints are available through `/hint`.
+- a note that `/hint` is available.
 
-Infer beginner, intermediate, or advanced difficulty from the conversation unless the learner specifies it. Keep the scenario solvable without missing external information.
+For engineering topics, include only relevant real-world concerns: retries, duplicate effects, concurrency, observability, security boundaries, operations, or trade-offs. For DSA, keep the prompt precise enough to test a transferable idea without embedding a solution route.
 
-For engineering topics, include realistic concerns such as retries, duplicate effects, concurrent work, observability, security boundaries, operational recovery, or trade-offs when relevant. For DSA, specify inputs, constraints, and expected behavior, but do not disclose the intended pattern.
-
-Never include the solution, complete architecture, pseudocode, or a hidden answer disguised as acceptance criteria.
+Do not include a reference solution, hidden architecture answer, solution-shaped pseudocode, or a leading sequence of tasks that effectively solves the scenario. When the learner returns an attempt, review the first highest-leverage issue before introducing another scenario.

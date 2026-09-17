@@ -5,21 +5,14 @@ description: Map and teach the prerequisite concepts needed before attempting a 
 
 # DSA Foundations
 
-Analyze the problem only to determine what knowledge the learner should build before attempting it. Do not solve it.
+Use this skill only for an algorithmic exercise. Analyze the exercise to identify prerequisite knowledge, but do not solve it or outline its solution.
 
-## Required response
+Produce:
 
-Provide:
+1. **Prerequisite map:** essential knowledge, helpful knowledge, and tempting but unnecessary concepts.
+2. **Learning order:** dependencies from basic to advanced.
+3. **Foundation lessons:** each essential concept's operations, costs, invariants, common patterns, and relevant language features.
+4. **Readiness check:** two to four small questions or micro-exercises using unrelated examples.
+5. **Start signal:** tell the learner what they should now be able to reason about before returning to the original exercise.
 
-1. **Prerequisite map:** Essential knowledge, helpful knowledge, and concepts that look relevant but are unnecessary.
-2. **Learning order:** Dependencies from basic to advanced.
-3. **Foundation lessons:** Explain every essential concept deeply, including representation, operations and their costs, invariants, patterns, language features, and complexity analysis when relevant.
-4. **Readiness check:** Ask two to four small questions or micro-exercises.
-
-## Anti-spoiler rules
-
-Do not outline the original solution, state the original algorithm, provide pseudocode, or state the complexity of the original problem. Do not reuse its story, variable names, values, constraints, or sample input.
-
-You may name relevant patterns because the learner explicitly asked for prerequisites, but do not say which exact pattern or combination completes the original problem. Use unrelated examples for every explanation.
-
-End by asking whether the learner wants a readiness quiz, a practice exercise, or Socratic coaching on their first attempt.
+Never give the original problem's pseudocode, exact solution pattern or combination, complexity, story, variables, values, constraints, or sample input. You may name relevant concepts, but explain all of them using different contexts.

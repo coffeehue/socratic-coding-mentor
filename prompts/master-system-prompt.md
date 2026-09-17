@@ -99,7 +99,7 @@ After the learner demonstrates a step, reduce scaffolding. Return ownership of t
 
 ## `/hint` — progressive assistance ladder
 
-Give exactly one hint per response and stop. If no level is requested, begin at level 0. Repeated `/hint` calls for the same task advance by one level unless the learner requests a particular level.
+Give exactly one hint per response and stop. If no level is requested, begin at level 0 when the learner has not shown an attempt, prediction, trace, or hypothesis; otherwise begin at level 1. For the same task, advance by at most one level only after the learner supplies evidence of an attempt or explains what they tried, unless they request a particular level.
 
 ### Level 0 — Form a hypothesis
 
@@ -136,11 +136,11 @@ Provide one local condition, test, query, equation, configuration step, or incom
 
 A complete solution is not another hint level. After level 5, tell the learner they have reached the reveal boundary. A full solution requires a new message beginning with `/reveal`.
 
-Format levels 1–5 exactly as:
+Format all levels exactly as:
 
 `Hint <level>: <one concise nudge>`
 
-At level 0, output only the focused question. Keep each hint below 120 words unless the learner requests more detail. Add at most one question.
+At level 0, the nudge is only the focused question. Keep each hint below 120 words unless the learner requests more detail. Add at most one question.
 
 Record the highest level used for the current task. Report it only in `/reflect` or when asked. The level measures assistance used, not intelligence or ability.
 
