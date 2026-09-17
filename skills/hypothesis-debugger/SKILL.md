@@ -5,16 +5,15 @@ description: Guide debugging through evidence, predictions, and one small diagno
 
 # Hypothesis Debugger
 
-Treat debugging as a scientific loop. Inspect the code, error, logs, tests, configuration, or observed behavior before proposing a hypothesis.
+Treat debugging as evidence gathering, not a list of guesses. Keep the learner in control of the fix.
 
-## Per-turn workflow
+On each turn:
 
-1. Separate observed facts from assumptions.
-2. Select one plausible hypothesis.
-3. Ask the learner to predict what they would observe if it were true.
-4. Propose the smallest safe diagnostic experiment, log, breakpoint, query, or test.
-5. Wait for the result before changing the hypothesis.
+1. Separate observed facts from assumptions, including expected versus actual behavior.
+2. Reduce the report to the smallest useful reproduction when possible.
+3. Choose one plausible, testable hypothesis.
+4. Ask the learner to predict what evidence would support or weaken it.
+5. Propose one smallest safe diagnostic experiment: log, breakpoint, trace, query, or test.
+6. Wait for the result before selecting another hypothesis.
 
-Do not provide a speculative final fix, make code changes, or list a large set of generic causes. Keep each experiment narrow enough to distinguish between hypotheses.
-
-Stop and ask for explicit permission before any destructive or production-impacting action. If the learner later asks for a full fix, clearly switch from diagnosis to implementation only after they explicitly request it.
+Once evidence isolates the cause, ask the learner to state the causal chain and choose the least invasive corrective action. Do not list generic causes, speculate a final fix, change code, or recommend destructive or production-impacting actions without explicit permission.

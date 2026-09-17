@@ -1,29 +1,31 @@
 ---
 name: progressive-hints
-description: Give a learner exactly one progressive, non-spoiling hint for an active coding, debugging, system-design, or DSA task. Use when they say /hint, ask for a clue, or explicitly want guidance without the answer.
+description: Give a learner exactly one graduated, non-spoiling hint for an active coding, debugging, system-design, or DSA task. Use when they say /hint, ask for a clue, or explicitly want guidance without the answer.
 ---
 
 # Progressive Hints
 
-Keep the learner doing the reasoning. Inspect their task, attempt, code, test, or error, then give exactly one useful nudge and stop.
+Help the learner make the next useful observation without completing their task for them.
 
-## Protect the solution
+Before choosing a level, inspect the task and the learner's attempt. If they have not tried yet, request one prediction, tiny example, or starting hypothesis instead of supplying solution information.
 
-Unless the learner explicitly requests a full solution, do not provide complete code, full pseudocode, a complete algorithm, a rewritten implementation, or an equivalent solved example. Do not edit files or apply fixes.
-
-Do not leak an answer through completed TODOs, variable names that encode the solution, or several hints combined into a disguised solution.
+Give exactly one hint and stop. Do not provide complete code, a full algorithm, full pseudocode, a solution-shaped example, completed TODOs, or variable names that encode the answer.
 
 ## Hint ladder
 
-Treat a number after `/hint` as the requested level. Otherwise begin at level 1. On repeated requests for the same task, advance one level unless the learner requests another level.
+Treat a number after `/hint` as the requested level. If no level is specified, start at level 0 when the learner has shown no effort; otherwise start at level 1. For the same task, move up at most one level after the learner responds with evidence of an attempt or says what they tried.
 
-1. **Observation:** Direct attention to a constraint, relationship, state change, or failing behavior. Do not name the pattern.
-2. **Direction:** Suggest one relevant concept, data structure, debugging dimension, or design principle. Do not explain its full application.
-3. **Structure:** Ask the learner to formulate one subproblem, invariant, boundary, or decision rule. Do not give full pseudocode.
-4. **Near step:** Give one incomplete implementation step or neutral fragment that cannot solve the task by itself.
+| Level | Release | What to do |
+| --- | --- | --- |
+| 0 | Hypothesis | Ask one prediction or invite a tiny trace. Supply no solution concept. |
+| 1 | Focus | Point to one constraint, state change, boundary, or observation worth inspecting. Do not name a pattern. |
+| 2 | Concept | Suggest one relevant concept, data structure, debugging dimension, or design principle. Do not map it onto the task. |
+| 3 | Relationship | Ask for one invariant, subproblem, comparison, or decision rule. Do not give pseudocode. |
+| 4 | Partial plan | Identify one local checkpoint or incomplete step. Do not give the complete sequence. |
+| 5 | Local unblock | Give one small, incomplete implementation or diagnostic move that cannot solve the task on its own. |
 
-## Response format
+`/reveal` is a separate, explicit answer-unlock mode; it is not level 6. If a request asks for the complete answer while in hint mode, keep the mode protected and tell the learner they may deliberately start a message with `/reveal`.
 
-Write `Hint <level>: <one concise nudge>`. Add at most one targeted question. Keep the response below 100 words unless the learner asks for more detail.
+Write `Hint <level>: <one concise nudge>`. Add at most one targeted question. Keep it under 100 words unless the learner asks for more detail.
 
-Make the hint specific to the learner's attempt. Prefer a next thought over an answer-shaped explanation.
+After a successful learner step, lower or hold assistance rather than escalating automatically. Make the hint specific to the learner's code, evidence, and current misunderstanding.

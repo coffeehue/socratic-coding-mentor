@@ -1,78 +1,93 @@
 # Socratic Coding Mentor
 
-An open, no-spoiler learning system for coding, DSA, debugging, and software engineering.
+An open learning system for coding, DSA, debugging, and software engineering. It helps learners reason and implement for themselves instead of receiving a finished solution by default.
 
-**Tagline:** Learn to solve it; don't outsource the thinking.
+## What it does
 
-## What this includes
-
-| Skill | Invoke with | Purpose |
+| Capability | Command | Learning behavior |
 | --- | --- | --- |
-| Progressive Hints | `/hint` | One progressively stronger clue, never a solution dump |
-| Socratic Teacher | `/teach`, `/coach` | One focused question at a time |
-| Concept Explainer | `/explain` | Concept → mental model → example → code → pitfalls |
-| DSA Foundations | `/foundations`, `/toolkit` | Learn prerequisites before an algorithmic problem |
-| Practice Scenario Builder | `/challenge` | Create realistic, answer-free exercises such as DLQ scenarios |
-| Learning Code Reviewer | `/review` | Find the first important issue without rewriting the code |
-| Hypothesis Debugger | `/debug` | Debug through evidence and small experiments |
+| Progressive hints | `/hint [0-5]` | One graduated clue at a time; starts with a prediction when there is no attempt. |
+| Socratic teaching | `/teach` or `/coach` | One focused question, then waits for the learner. |
+| Concept lessons | `/explain` | Concept → mental model → mechanics → example → code → pitfalls → transfer check. |
+| DSA foundations | `/foundations` or `/toolkit` | Maps prerequisites without spoiling the original exercise. |
+| Applied practice | `/challenge [topic] [difficulty]` | Creates a realistic, answer-free scenario. |
+| Learning review | `/review` | Identifies one evidence-backed, highest-leverage issue. |
+| Evidence-led debugging | `/debug` | Tests one hypothesis with one small diagnostic step. |
 
-The master prompt also provides `/quiz`, `/reflect`, and `/reveal`. `/reveal` is the deliberate escape hatch for a complete solution.
+The shared prompt also includes `/quiz`, `/reflect`, and `/reveal`. `/reveal` is the only deliberate mode that may provide a complete solution for the current task.
+
+## Hint ladder
+
+`/hint` is not a disguised solution generator. It uses six controlled levels:
+
+| Level | Purpose |
+| --- | --- |
+| 0 | Ask for a prediction or tiny trace. |
+| 1 | Focus attention on one constraint or behavior. |
+| 2 | Name one relevant concept. |
+| 3 | Explore one relationship, invariant, or decision rule. |
+| 4 | Identify one incomplete local checkpoint. |
+| 5 | Give one small local unblock that cannot finish the task alone. |
+
+The mentor moves up only after the learner shows an attempt or evidence. `/reveal` is separate; it is not “hint level 6.”
+
+## Use it
+
+### ChatGPT Custom GPT
+
+This is the best public ChatGPT route. In the GPT editor, paste [chatgpt-custom-gpt-instructions.md](prompts/chatgpt-custom-gpt-instructions.md) into **Instructions** (not the full master prompt; Custom GPT Instructions has a size limit). Enable only the capabilities you want; **Actions are not required**. Add the provided conversation starters, test the GPT, then choose the public sharing option available to your account.
+
+### ChatGPT, Codex, Gemini, or Claude chat
+
+Copy [master-system-prompt.md](prompts/master-system-prompt.md) into a project, Gem, custom instruction surface, or the first message of a new chat. This works as a portable fallback, but it does not install native skills or plugins.
+
+### Claude skills
+
+Download the individual ZIP packages from [dist/claude](dist/claude) and import them wherever your Claude account exposes skill import. Platform availability differs by plan and region; the prompt fallback above always works.
+
+### Codex plugin
+
+Install the plugin source at [plugins/socratic-coding-mentor](plugins/socratic-coding-mentor) in a Codex environment that supports local plugins. The packaged release is in [dist/openai](dist/openai).
+
+For current click-by-click platform publishing instructions and limitations, see [PUBLIC_DISTRIBUTION_GUIDE.md](docs/PUBLIC_DISTRIBUTION_GUIDE.md).
+
+## Examples
+
+```text
+/hint I am solving this array problem. I tried nested loops and it times out.
+/teach Here is my retry handler and the duplicate-message bug I see: ...
+/explain idempotency keys in TypeScript
+/foundations [paste an unsolved DSA exercise]
+/challenge event-driven architecture intermediate
+/debug Expected one email; actual behavior is three emails. Here are the logs: ...
+```
 
 ## Repository layout
 
 ```text
-prompts/master-system-prompt.md  # For Gemini Gems and instruction surfaces
-skills/                          # Agent Skills source packages (SKILL.md)
-dist/claude/                     # Upload-ready Claude ZIP releases
-evals/behavior-cases.md          # Regression cases for anti-spoiler behavior
-docs/BLUEPRINT.md                # Product and publishing design notes
+prompts/
+  master-system-prompt.md              # Canonical unrestricted prompt
+  chatgpt-custom-gpt-instructions.md   # Size-constrained Custom GPT version
+skills/                                # Canonical portable skill packages
+plugins/socratic-coding-mentor/        # Codex plugin and mirrored skills
+dist/claude/                           # Individual skill ZIP release assets
+dist/openai/                           # Plugin ZIP release assets
+evals/behavior-cases.md                # Manual behavior and leakage checks
+docs/                                  # Blueprint, publishing, privacy, terms
 ```
 
-## Use it
+## Contributing and releasing
 
-### Gemini
+The canonical behavior starts in [master-system-prompt.md](prompts/master-system-prompt.md) and the seven folders under [skills](skills). When behavior changes:
 
-1. Open **Gems** in Gemini.
-2. Create a Gem named **Socratic Coding Mentor**.
-3. Paste the entire content of `prompts/master-system-prompt.md` into its instructions.
-4. Add conversation starters such as `/hint`, `/teach`, `/foundations`, and `/challenge DLQ intermediate`.
-5. Test before sharing.
+1. Update the master prompt and the affected canonical skill package(s).
+2. Keep the matching `plugins/socratic-coding-mentor/skills/` package byte-for-byte aligned.
+3. Update the Custom GPT version so it preserves the same learning contract within its field limit.
+4. Run the cases in [behavior-cases.md](evals/behavior-cases.md).
+5. Regenerate the Claude and Codex ZIP assets and publish a new semantic-versioned release.
 
-### Claude
-
-Each ZIP in `dist/claude/` contains one focused skill with a lowercase `skill.md`, which Claude expects.
-
-1. In Claude, open **Customize → Skills**.
-2. Upload one or more ZIP files from `dist/claude/`.
-3. Enable the skills and test with the matching command.
-
-Use the master prompt inside a Claude Project if you prefer one assistant with all commands in the same conversation.
-
-### ChatGPT / Codex compatible skills
-
-The source packages in `skills/` use the Agent Skills-style `SKILL.md` plus `agents/openai.yaml` metadata. Install or import them through the Skills surface available in your ChatGPT/Codex environment.
-
-The Custom GPT route is not recommended for new personal public releases; use reusable skills or plugins where your account supports them.
-
-## Public release checklist
-
-1. Create a public GitHub repository from this folder.
-2. Keep the MIT license unless you need different terms.
-3. Create a GitHub release and attach the ZIPs in `dist/claude/`.
-4. Publish your Gemini Gem using **Public** or **Anyone with the link**.
-5. Do not include secrets, private code, or uploaded sensitive files. Shared Gem instructions and files can be visible to recipients.
-6. Run `evals/behavior-cases.md` after every change. A learning mentor fails if it leaks a complete solution indirectly.
-
-
-## Develop the skills
-
-Each skill is intentionally narrow. Keep its `description` precise because compatible agents use it to decide when to activate the skill. Do not add README files inside individual skill folders.
-
-When changing a skill, test both:
-
-- prompts that should invoke it;
-- prompts that should stay protected from answer leakage.
+Do not silently weaken the anti-spoiler contract. Release notes should call out changes to `/reveal`, hint levels, or answer-leakage protections.
 
 ## License
 
-MIT. See [LICENSE](LICENSE).
+[MIT](LICENSE)
